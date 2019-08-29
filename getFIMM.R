@@ -2,17 +2,17 @@ library(PharmacoGx)
 library(Biobase)
 
 
-drug.info <- readRDS("/pfs/FIMMdata/drug.info.rds")
-cell.info <- readRDS("/pfs/FIMMdata/cell.info.rds")
+drug.info <- readRDS("/pfs/FIMMraw/drug.info.rds")
+cell.info <- readRDS("/pfs/FIMMraw/cell.info.rds")
 
-curationCell <- readRDS("/pfs/FIMMdata/curationCell.rds")
-curationDrug <- readRDS("/pfs/FIMMdata/curationDrug.rds")
-curationTissue <- readRDS("/pfs/FIMMdata/curationTissue.rds")
+curationCell <- readRDS("/pfs/FIMMraw/curationCell.rds")
+curationDrug <- readRDS("/pfs/FIMMraw/curationDrug.rds")
+curationTissue <- readRDS("/pfs/FIMMraw/curationTissue.rds")
 
-sens.info <- readRDS("/pfs/FIMMdata/sens.info.rds")
-sens.prof <- readRDS("/pfs/FIMMdata/sens.prof.rds")
+sens.info <- readRDS("/pfs/FIMMraw/sens.info.rds")
+sens.prof <- readRDS("/pfs/FIMMraw/sens.prof.rds")
 
-sens.raw <- readRDS("/pfs/FIMMdata/sens.raw.rds")
+sens.raw <- readRDS("/pfs/FIMMraw/sens.raw.rds")
 
 profiles <- get(load(file.path("pfs", "FIMMProfiles/profiles.RData")))
 profiles <- profiles[rownames(sensitivity_info),]
