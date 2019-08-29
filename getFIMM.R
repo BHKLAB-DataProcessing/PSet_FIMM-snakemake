@@ -18,7 +18,9 @@ profiles <- get(load(file.path("pfs", "FIMMProfiles/profiles.RData")))
 profiles <- profiles[rownames(sens.info),]
 
 
-sens.prof <- cbind(sens.prof[,"aac_published"], profiles)
+sens.prof <- cbind(sens.prof, profiles)
+
+sens.prof <- sens.prof[,-c("cellid", "drugid")]
 
 message("aac correlations are")
 
