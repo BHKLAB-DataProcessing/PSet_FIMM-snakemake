@@ -20,7 +20,7 @@ profiles <- profiles[rownames(sens.info),]
 
 sens.prof <- cbind(sens.prof, profiles)
 
-sens.prof <- sens.prof[,-c("cellid", "drugid")]
+sens.prof <- sens.prof[,-c(1, 2)]
 
 message("aac correlations are")
 
