@@ -15,7 +15,7 @@ sens.prof <- readRDS("/pfs/FIMMraw/sens.prof.rds")
 sens.raw <- readRDS("/pfs/FIMMraw/sens.raw.rds")
 
 profiles <- get(load(file.path("pfs", "FIMMProfiles/profiles.RData")))
-profiles <- profiles[rownames(sensitivity_info),]
+profiles <- profiles[rownames(sens.info),]
 
 
 sens.prof <- cbind(sens.prof[,"aac_published"], profiles)
