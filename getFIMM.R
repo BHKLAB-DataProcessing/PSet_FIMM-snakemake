@@ -16,7 +16,7 @@ sens.raw <- readRDS("/pfs/FIMMraw/sens.raw.rds")
 
 profiles <- get(load(file.path("pfs", "FIMMProfiles/profiles.RData")))
 profiles <- profiles[rownames(sens.info),]
-
+profiles <- apply(profiles, c(1,2), as.numeric)
 
 sens.prof <- cbind(sens.prof, profiles)
 
