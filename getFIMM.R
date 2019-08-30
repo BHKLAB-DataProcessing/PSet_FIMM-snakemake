@@ -56,5 +56,5 @@ FIMM <-   PharmacoSet(molecularProfiles=list("rna"=dummyRNA),
 message("Saving")
 
 
-save(FIMM, file="FIMM.RData", version=2)
+save(FIMM, file="/pfs/out/FIMM.RData", version=2)
 
