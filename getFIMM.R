@@ -24,7 +24,7 @@ sens.prof <- sens.prof[,-c(1, 2)]
 
 message("aac correlations are")
 
-message(cor(sens.prof[,"aac_published"], sens.prof[,"AAC"], use="pairwise.complete"))
+message(cor(sens.prof[,"aac_published"], sens.prof[,"aac_recomputed"], use="pairwise.complete"))
 
 dummyRNA <- Biobase::ExpressionSet()
 pData(dummyRNA)$cellid <- character()
