@@ -2,19 +2,19 @@ library(PharmacoGx)
 library(Biobase)
 
 
-drug.info <- readRDS("/pfs/FIMMraw/drug.info.rds")
-cell.info <- readRDS("/pfs/FIMMraw/cell.info.rds")
+drug.info <- readRDS("/pfs/processFIMM/drug.info.rds")
+cell.info <- readRDS("/pfs/processFIMM/cell.info.rds")
 
-curationCell <- readRDS("/pfs/FIMMraw/curationCell.rds")
-curationDrug <- readRDS("/pfs/FIMMraw/curationDrug.rds")
-curationTissue <- readRDS("/pfs/FIMMraw/curationTissue.rds")
+curationCell <- readRDS("/pfs/processFIMM/curationCell.rds")
+curationDrug <- readRDS("/pfs/processFIMM/curationDrug.rds")
+curationTissue <- readRDS("/pfs/processFIMM/curationTissue.rds")
 
-sens.info <- readRDS("/pfs/FIMMraw/sens.info.rds")
-sens.prof <- readRDS("/pfs/FIMMraw/sens.prof.rds")
+sens.info <- readRDS("/pfs/processFIMM/sens.info.rds")
+sens.prof <- readRDS("/pfs/processFIMM/sens.prof.rds")
 
-sens.raw <- readRDS("/pfs/FIMMraw/sens.raw.rds")
+sens.raw <- readRDS("/pfs/processFIMM/sens.raw.rds")
 
-profiles <- get(load(file.path("pfs", "FIMMProfiles/profiles.RData")))
+profiles <- get(load(file.path("pfs", "SliceAssemble/profiles.RData")))
 profiles <- profiles[rownames(sens.info),]
 profiles <- apply(profiles, c(1,2), as.numeric)
 
