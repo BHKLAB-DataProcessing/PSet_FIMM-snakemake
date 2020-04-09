@@ -52,8 +52,6 @@ rownames(drug_all) <- drug_all[ , "unique.drugid"]
 drug_all <- drug_all[rownames(drug.info),]
 drug.info[,c("smiles","inchikey","cid","FDA")] <- drug_all[,c("smiles","inchikey","cid","FDA")]
 
-colnames(cell.info)[which(names(cell.info) == "cellid")] <- "unique.cellid"
-colnames(drug.info)[which(names(drug.info) == "drugid")] <- "unique.drugid"
 
 message("Making PSet")
 
