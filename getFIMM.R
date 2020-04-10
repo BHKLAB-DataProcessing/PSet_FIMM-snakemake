@@ -1,6 +1,8 @@
 library(PharmacoGx)
 library(Biobase)
 
+args = commandArgs(trailingOnly=TRUE)
+ORCESTRA_ID <- args
 
 drug.info <- readRDS("/pfs/processFIMM/drug.info.rds")
 cell.info <- readRDS("/pfs/processFIMM/cell.info.rds")
@@ -74,4 +76,9 @@ message("Saving")
 
 
 saveRDS(FIMM, file="/pfs/out/FIMM.rds", version=2)
-
+dataset <- "FIMM"
+#output ORCESTRA_ID and Pachyderm commit id
+write.table(dataset, file="/pfs/out/dataset.txt", row.names = F ,quote = F, sep = "\t", col.names = F)
+write.table(ORCESTRA_ID, file="/pfs/out/orcestra_id.txt", row.names = F ,quote = F, sep = "\t", col.names = F)				   
+pach_commit_id <- Sys.getenv("PACH_OUTPUT_COMMIT_ID")
+write.table(pach_commit_id, file="/pfs/out/commit_id.txt", row.names = F ,quote = F, sep = "\t", col.names = F)
