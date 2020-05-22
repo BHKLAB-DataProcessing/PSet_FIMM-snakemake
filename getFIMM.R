@@ -1,5 +1,6 @@
 library(PharmacoGx)
 library(Biobase)
+library(SummarizedExperiment)
 
 args = commandArgs(trailingOnly=TRUE)
 ORCESTRA_ID <- args
@@ -28,14 +29,9 @@ message("aac correlations are")
 
 message(cor(sens.prof[,"aac_published"], sens.prof[,"aac_recomputed"], use="pairwise.complete"))
 
-dummyRNA <- Biobase::ExpressionSet()
-pData(dummyRNA)$cellid <- character()
-pData(dummyRNA)$batchid <- character()
+emptySE <- SummarizedExperiment()
+emptySE@metadata$annotation <- "FIMM contains no molecular profiles of cell lines. This SummarizedExperiment is empty placeholder."
 
-fData(dummyRNA)$BEST <- vector()
-fData(dummyRNA)$Symbol <- character()
-
-annotation(dummyRNA) <- "rna"
 
 cellsPresent <- sort(unique(sens.info$cellid))
 cell.info <- cell.info[cellsPresent,]
@@ -61,7 +57,7 @@ curationTissue <- curationTissue[rownames(cell.info),]
 message("Making PSet")
 
 
-FIMM <-   PharmacoSet(molecularProfiles=list("rna"=dummyRNA),
+FIMM <-   PharmacoGx::PharmacoSet(molecularProfiles=list("rna"=emptySE),
                       name="FIMM", 
                       cell=cell.info, 
                       drug=drug.info, 
