@@ -94,7 +94,7 @@ FIMM <-   PharmacoGx::PharmacoSet(molecularProfiles=list("rna"=emptySE),
 
 message("Saving")
 
-
+FIMM@annotation$version <- 2
 saveRDS(FIMM, file="/pfs/out/FIMM.rds", version=2)
 dataset <- "FIMM"
 #output ORCESTRA_ID and Pachyderm commit id
