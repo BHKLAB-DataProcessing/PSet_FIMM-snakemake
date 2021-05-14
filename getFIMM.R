@@ -1,6 +1,7 @@
 library(PharmacoGx)
 library(Biobase)
 library(SummarizedExperiment)
+library(biocompute)
 
 args = commandArgs(trailingOnly=TRUE)
 ORCESTRA_ID <- args
