@@ -359,7 +359,7 @@ pipeline_input <- data.frame(
   "uri" = c("https://github.com/BHKLAB-Pachyderm/Annotations/blob/master/cell_annotation_all.csv",
     "https://github.com/BHKLAB-Pachyderm/Annotations/blob/master/drugs_with_ids.csv",
     "https://media.nature.com/original/nature-assets/nature/journal/v540/n7631/extref/nature20171-s2.xlsx",
-    "https://github.com/BHKLAB-Pachyderm/getCTRPv2/CTRPv2.R"
+    "https://github.com/BHKLAB-Pachyderm/getFIMM/getFIMM.R"
   ),
   "access_time" = c(created,created,created,created),
   stringsAsFactors = FALSE
@@ -488,7 +488,7 @@ input_subdomain <- data.frame(
   "uri" = c("https://github.com/BHKLAB-Pachyderm/Annotations/blob/master/cell_annotation_all.csv",
             "https://github.com/BHKLAB-Pachyderm/Annotations/blob/master/drugs_with_ids.csv",
             "https://media.nature.com/original/nature-assets/nature/journal/v540/n7631/extref/nature20171-s2.xlsx",
-            "https://github.com/BHKLAB-Pachyderm/getCTRPv2/CTRPv2.R"
+            "https://github.com/BHKLAB-Pachyderm/getFIMM/getFIMM.R"
   ),
   "access_time" = c(created,created,created,created),
   stringsAsFactors = FALSE
