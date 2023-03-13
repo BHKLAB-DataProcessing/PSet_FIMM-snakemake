@@ -1,9 +1,10 @@
-
 library(PharmacoGx)
 
 options(stringsAsFactors = FALSE)
 args <- commandArgs(trailingOnly = TRUE)
 processed_dir <- paste0(args[[1]], "processed")
+
+# processed_dir <- "/Users/minoru/Code/bhklab/DataProcessing/PSet/PSet_FIMM-snakemake/processed"
 
 unzip(file.path(processed_dir, "raw_sense_slices.zip"), exdir = file.path(processed_dir, "slices"), junkpaths = TRUE)
 
@@ -23,7 +24,7 @@ for (file in files) {
 recalc_files <- list.files(path = file.path(processed_dir, "slices_recomp"), full.names = TRUE)
 slices <- list()
 
-for (fn in myfn) {
+for (fn in recalc_files) {
   temp <- readRDS(fn)
   parTable <- do.call(rbind, temp[[3]])
   # print(head(rownames(parTable)))
@@ -43,3 +44,6 @@ for (fn in myfn) {
 res <- do.call(rbind, slices)
 
 save(res, file = file.path(processed_dir, "profiles.RData"))
+
+unlink(file.path(processed_dir, 'slices'), recursive=TRUE)
+unlink(file.path(processed_dir, 'slices_recomp'), recursive=TRUE)

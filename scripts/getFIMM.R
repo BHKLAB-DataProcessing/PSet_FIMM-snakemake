@@ -2,13 +2,14 @@ library(PharmacoGx)
 library(Biobase)
 library(SummarizedExperiment)
 library(biocompute)
+library(data.table)
 
-args <- commandArgs(trailingOnly = TRUE)
 args <- commandArgs(trailingOnly = TRUE)
 download_dir <- paste0(args[[1]], "download")
 processed_dir <- paste0(args[[1]], "processed")
 out_dir <- args[[1]]
 
+standardize <- TRUE
 standardize <- args[grep("filtered", args)]
 
 standardizeRawDataConcRange <- function(sens.info, sens.raw) {
@@ -241,7 +242,6 @@ message("Making PSet")
 sens.info <- as.data.frame(sens.info)
 
 if (length(standardize) > 0) {
-
   # standardize <- standardizeRawDataConcRange(sens.info = sens.info, sens.raw = sens.raw)
   # sens.info<- standardize$sens.info
   # sens.raw <- standardize$sens.raw

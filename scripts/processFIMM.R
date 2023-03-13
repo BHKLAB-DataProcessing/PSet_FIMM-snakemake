@@ -1,11 +1,16 @@
 library(PharmacoGx)
 library(readxl)
-
+library(dplyr)
+library(reshape2)
+library(parallel)
 
 options(stringsAsFactors = FALSE)
 args <- commandArgs(trailingOnly = TRUE)
 download_dir <- paste0(args[[1]], "download")
 processed_dir <- paste0(args[[1]], "processed")
+
+# download_dir <- "/Users/minoru/Code/bhklab/DataProcessing/PSet/PSet_FIMM-snakemake/download"
+# processed_dir <- "/Users/minoru/Code/bhklab/DataProcessing/PSet/PSet_FIMM-snakemake/processed"
 
 matchToIDTable <- function(ids, tbl, column, returnColumn = "unique.cellid") {
   sapply(ids, function(x) {
@@ -39,8 +44,11 @@ drug.all <- read.csv(file.path(download_dir, "drugs_with_ids.csv"))
 # file.copy("/pfs/FIMMdata/nature20171-s1.xls", "/pfs/out/nature20171-s1.xls")
 # file.copy("/pfs/FIMMdata/nature20171-s2.xlsx", "/pfs/out/nature20171-s2.xlsx")
 
-sens.processed <- as.data.frame(read_excel(file.path(download_dir, "nature20171-s1.xls")))
-sens.raw <- as.data.frame(read_excel(file.path(download_dir, "nature20171-s2.xlsx")))
+sens.processed <- data.frame(read_excel(file.path(download_dir, "41586_2016_BFnature20171_MOESM60_ESM.xls")))
+sens.raw <- data.frame(read_excel(file.path(download_dir, "41586_2016_BFnature20171_MOESM61_ESM.xlsx")))
+
+# sens.processed <- as.data.frame(read_excel(file.path(download_dir, "41586_2016_BFnature20171_MOESM60_ESM.xls")))
+# sens.raw <- as.data.frame(read_excel(file.path(download_dir, "41586_2016_BFnature20171_MOESM61_ESM.xls")))
 
 
 ## Creating curation cell and drug table to resolve mismatches between processed and raw data
@@ -55,7 +63,10 @@ rownames(curationCell) <- curationCell[, "unique.cellid"]
 
 rownames(curationTissue) <- curationCell[, "unique.cellid"]
 
+curationDrug <- curationDrug %>% distinct()
 rownames(curationDrug) <- curationDrug[, "unique.drugid"]
+
+
 
 
 # cell.ids <- colnames(sens.processed)[-c(1:4)]
@@ -68,8 +79,6 @@ sens.data <- sens.processed[-1:-3, ]
 rownames(sens.data) <- sens.data[, 3]
 
 sens.data <- sens.data[, -1:-4]
-
-library(reshape2)
 
 sens.data <- apply(sens.data, c(1, 2), as.numeric)
 
@@ -157,13 +166,13 @@ cell.info$tissueid <- curationTissue[rownames(cell.info), "unique.tissueid"]
 
 drug.info <- sens.processed[-1:-3, 1:3][, 3:1]
 
-drug.info$drugid <- matchToIDTable(drug.info[, "Drug name"], curationDrug, "FIMM.drugid", "unique.drugid")
+drug.info$drugid <- matchToIDTable(drug.info[, "Drug.name"], curationDrug, "FIMM.drugid", "unique.drugid")
 
 rownames(drug.info) <- drug.info$drugid
 
-rownames(drug.all) <- drug.all$unique.drugid
+drug.all <- drug.all[drug.all$unique.drugid %in% rownames(drug.info), ]
 
-drug.info <- cbind(drug.info, drug.all[rownames(drug.info), c("smiles", "inchikey", "cid")])
+drug.info <- cbind(drug.info, drug.all[, c("smiles", "inchikey", "cid")])
 
 saveRDS(drug.info, file = file.path(processed_dir, "drug.info.rds"))
 saveRDS(cell.info, file = file.path(processed_dir, "cell.info.rds"))
