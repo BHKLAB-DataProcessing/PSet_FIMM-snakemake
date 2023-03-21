@@ -9,6 +9,9 @@ S3 = S3RemoteProvider(
 
 prefix = config["prefix"]
 filename = config["filename"]
+filter = config["filtered"]
+filtered = 'filtered' if filter is not None and filter is 'True' else ''
+
 
 rule get_fimm:
     input:
@@ -27,7 +30,7 @@ rule get_fimm:
         S3.remote(prefix + filename)
     shell:
         """
-        Rscript scripts/getFIMM.R {prefix} {filename} filtered
+        Rscript scripts/getFIMM.R {prefix} {filename} {filtered}
         """
 
 rule recalculate_and_assemble:
