@@ -23,7 +23,7 @@ rule get_fimm:
         S3.remote(prefix + "download/drugs_with_ids.csv"),
         S3.remote(prefix + "download/cell_annotation_all.csv"),
     output:
-        prefix + "FIMM.rds"
+        S3.remote(prefix + "FIMM.rds")
     shell:
         """
         Rscript scripts/getFIMM.R {prefix} filter

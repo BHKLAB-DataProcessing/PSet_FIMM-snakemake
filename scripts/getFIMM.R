@@ -1,7 +1,7 @@
 library(PharmacoGx)
 library(Biobase)
 library(SummarizedExperiment)
-library(biocompute)
+# library(biocompute)
 library(data.table)
 
 args <- commandArgs(trailingOnly = TRUE)
