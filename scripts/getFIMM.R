@@ -8,6 +8,7 @@ args <- commandArgs(trailingOnly = TRUE)
 download_dir <- paste0(args[[1]], "download")
 processed_dir <- paste0(args[[1]], "processed")
 out_dir <- args[[1]]
+filename <- args[[2]]
 
 standardize <- TRUE
 standardize <- args[grep("filtered", args)]
@@ -277,7 +278,7 @@ if (length(standardize) > 0) {
 message("Saving")
 
 FIMM@annotation$version <- 2
-saveRDS(FIMM, file = file.path(out_dir, "FIMM.rds"), version = 2)
+saveRDS(FIMM, file = paste0(out_dir, filename), version = 2)
 
 
 ### CREATE BIOCOMPUTE OBJECT###
