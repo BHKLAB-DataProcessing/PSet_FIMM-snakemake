@@ -1,8 +1,9 @@
-library(PharmacoGx)
-library(Biobase)
-library(SummarizedExperiment)
+library(stringr)
+# library(PharmacoGx)
+# library(Biobase)
+# library(SummarizedExperiment)
 # library(biocompute)
-library(data.table)
+# library(data.table)
 
 args <- commandArgs(trailingOnly = TRUE)
 download_dir <- paste0(args[[1]], "download")
