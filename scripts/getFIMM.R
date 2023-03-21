@@ -253,14 +253,14 @@ if (length(standardize) > 0) {
 FIMM <- PharmacoGx::PharmacoSet(
   molecularProfiles = list("rna" = emptySE),
   name = "FIMM",
-  sample = cell.info,
-  treatment = drug.info,
+  cell = cell.info,
+  drug = drug.info,
   sensitivityInfo = sens.info,
   sensitivityRaw = sens.raw,
   sensitivityProfiles = sens.prof,
   sensitivityN = NULL,
-  curationSample = curationCell,
-  curationTreatment = curationDrug,
+  curationCell = curationCell,
+  curationDrug = curationDrug,
   curationTissue = curationTissue,
   datasetType = "sensitivity"
 )
