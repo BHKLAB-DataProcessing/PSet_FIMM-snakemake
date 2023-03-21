@@ -27,7 +27,7 @@ rule get_fimm:
         S3.remote(prefix + filename)
     shell:
         """
-        Rscript scripts/getFIMM.R {prefix} {filename} filter
+        Rscript scripts/getFIMM.R {prefix} {filename} filtered
         """
 
 rule recalculate_and_assemble:
