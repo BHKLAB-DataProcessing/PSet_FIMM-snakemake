@@ -10,7 +10,8 @@ S3 = S3RemoteProvider(
 prefix = config["prefix"]
 filename = config["filename"]
 filter = config["filtered"]
-filtered = 'filtered' if filter is not None and filter == 'True' else ''
+print(filter)
+filtered = 'filtered'
 
 
 rule get_fimm:
