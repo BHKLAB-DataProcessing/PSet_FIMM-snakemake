@@ -1,9 +1,8 @@
-library(stringr)
-# library(PharmacoGx)
-# library(Biobase)
-# library(SummarizedExperiment)
+library(PharmacoGx)
+library(Biobase)
+library(SummarizedExperiment)
 # library(biocompute)
-# library(data.table)
+library(data.table)
 
 args <- commandArgs(trailingOnly = TRUE)
 download_dir <- paste0(args[[1]], "download")
@@ -11,7 +10,6 @@ processed_dir <- paste0(args[[1]], "processed")
 out_dir <- args[[1]]
 filename <- args[[2]]
 
-standardize <- TRUE
 standardize <- args[grep("filtered", args)]
 
 standardizeRawDataConcRange <- function(sens.info, sens.raw) {
