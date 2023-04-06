@@ -3,6 +3,7 @@ library(Biobase)
 library(SummarizedExperiment)
 # library(biocompute)
 library(data.table)
+library(parallel)
 
 args <- commandArgs(trailingOnly = TRUE)
 download_dir <- paste0(args[[1]], "download")
